@@ -35,7 +35,11 @@ mysql --version
 
 ```bash
 # No diretório do projeto
+# Com npm
 npm install
+
+# Com pnpm (recomendado)
+pnpm install
 ```
 
 ### 2. Configurar Banco de Dados
@@ -99,7 +103,7 @@ Get-Process | Where-Object {$_.ProcessName -like "*node*"} | Stop-Process -Force
 npx prisma generate
 
 # Reiniciar servidor
-npm start
+pnpm start
 ```
 
 ---
@@ -111,9 +115,13 @@ npm start
 ```bash
 # Modo produção
 npm start
+# ou
+pnpm start
 
 # Modo desenvolvimento (com auto-reload)
 npm run dev
+# ou
+pnpm dev
 ```
 
 ### Verificar se o Servidor Está Rodando
@@ -175,14 +183,14 @@ curl http://localhost:3000/api/relatorios/pagamentos-por-imovel
 
 ```json
 {
-  "1": 25000,
-  "2": 32000,
-  "3": 18000,
-  "4": 45000,
-  "5": 22000,
-  "6": 15000,
-  "7": 38000,
-  "8": 28000
+  "1": 17500,
+  "2": 22400,
+  "3": 12600,
+  "4": 27000,
+  "5": 8800,
+  "6": 4500,
+  "7": 3800,
+  "8": 2800
 }
 ```
 
@@ -198,11 +206,11 @@ curl http://localhost:3000/api/relatorios/vendas-por-mes
 {
   "01/2023": 7500,
   "02/2023": 12000,
-  "03/2023": 14200,
+  "03/2023": 16700,
   "04/2023": 15700,
-  "05/2023": 19700,
+  "05/2023": 17000,
   "06/2023": 15700,
-  "07/2023": 16800
+  "07/2023": 14800
 }
 ```
 
@@ -216,12 +224,12 @@ curl http://localhost:3000/api/relatorios/percentual-por-tipo
 
 ```json
 {
-  "Apartamento": "35.7%",
-  "Casa": "28.6%",
-  "Sala Comercial": "14.3%",
-  "Terreno": "7.1%",
-  "Galpão": "7.1%",
-  "Loja": "7.1%"
+  "Apartamento": "38.9%",
+  "Casa": "36.1%",
+  "Sala Comercial": "11.1%",
+  "Terreno": "8.3%",
+  "Galpão": "2.8%",
+  "Loja": "2.8%"
 }
 ```
 
@@ -336,7 +344,7 @@ npx prisma generate
 
 ### Erro de Relacionamento Prisma
 
-```
+```text
 Unknown field `tipo_imovel` for include statement on model `Imovel`
 ```
 
@@ -406,7 +414,7 @@ O servidor exibe logs detalhados:
 
 ```bash
 # 1. Iniciar servidor
-npm start
+pnpm start
 
 # 2. Executar testes automatizados
 node test-endpoints.js

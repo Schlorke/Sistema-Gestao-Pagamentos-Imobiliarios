@@ -1,8 +1,6 @@
-<p align="center">
-  <img src="https://www.univali.br/SiteAssets/SitePages/Institucional/Identidade%20Visual/univali_logo.png" alt="UNIVALI Logo" width="300">
-</p>
-
 # Sistema de Gestão de Pagamentos Imobiliários
+
+![UNIVALI Logo](https://www.univali.br/SiteAssets/SitePages/Institucional/Identidade%20Visual/univali_logo.png)
 
 ## Hands on Work VII - Parte 2
 
@@ -72,7 +70,11 @@ Implementar 3 serviços REST que processam dados imobiliários usando **programa
 2. **Instale as dependências**
 
    ```bash
+   # Com npm
    npm install
+
+   # Com pnpm (recomendado)
+   pnpm install
    ```
 
 3. **Configure o XAMPP/MySQL**
@@ -105,10 +107,19 @@ Implementar 3 serviços REST que processam dados imobiliários usando **programa
 7. **Inicie o servidor**
 
    ```bash
+   # Opção 1: Comando direto
    node server.js
-   ```
 
-   **⚠️ NOTA:** Este projeto não usa `npm start` - execute diretamente `node server.js`
+   # Opção 2: Via npm/pnpm
+   npm start
+   # ou
+   pnpm start
+
+   # Opção 3: Modo desenvolvimento (com auto-reload)
+   npm run dev
+   # ou
+   pnpm dev
+   ```
 
 ### Teste Automatizado
 
@@ -143,14 +154,14 @@ GET http://localhost:3000/api/relatorios/pagamentos-por-imovel
 
 ```json
 {
-  "1": 25000,
-  "2": 32000,
-  "3": 18000,
-  "4": 45000,
-  "5": 22000,
-  "6": 15000,
-  "7": 38000,
-  "8": 28000
+  "1": 17500,
+  "2": 22400,
+  "3": 12600,
+  "4": 27000,
+  "5": 8800,
+  "6": 4500,
+  "7": 3800,
+  "8": 2800
 }
 ```
 
@@ -166,11 +177,11 @@ GET http://localhost:3000/api/relatorios/vendas-por-mes
 {
   "01/2023": 7500,
   "02/2023": 12000,
-  "03/2023": 14200,
+  "03/2023": 16700,
   "04/2023": 15700,
-  "05/2023": 19700,
+  "05/2023": 17000,
   "06/2023": 15700,
-  "07/2023": 16800
+  "07/2023": 14800
 }
 ```
 
@@ -184,12 +195,12 @@ GET http://localhost:3000/api/relatorios/percentual-por-tipo
 
 ```json
 {
-  "Apartamento": "35.7%",
-  "Casa": "28.6%",
-  "Sala Comercial": "14.3%",
-  "Terreno": "7.1%",
-  "Galpão": "7.1%",
-  "Loja": "7.1%"
+  "Apartamento": "38.9%",
+  "Casa": "36.1%",
+  "Sala Comercial": "11.1%",
+  "Terreno": "8.3%",
+  "Galpão": "2.8%",
+  "Loja": "2.8%"
 }
 ```
 
@@ -269,15 +280,17 @@ Object.entries(contagemPorTipo).forEach(([tipo, quantidade]) => {
 Se aparecer erro de conexão:
 
 1. **Verifique se o XAMPP MySQL está rodando**
+
    ```bash
    # No XAMPP Control Panel, clique "Start" no MySQL
    ```
 
 2. **Verifique se o banco existe**
-   - Abra phpMyAdmin (http://localhost/phpmyadmin)
+   - Abra phpMyAdmin (<http://localhost/phpmyadmin>)
    - Confirme que existe o banco `sistema_pagamentos_imobiliarios`
 
 3. **Verifique o arquivo .env**
+
    ```bash
    # Deve estar assim para XAMPP:
    DATABASE_URL="mysql://root:@localhost:3306/sistema_pagamentos_imobiliarios"
@@ -288,11 +301,13 @@ Se aparecer erro de conexão:
 Se aparecer erro ao executar `node server.js`:
 
 1. **Navegue para o diretório correto**
+
    ```bash
    cd Sistema-Gestao-Pagamentos-Imobiliarios
    ```
 
 2. **Verifique se as dependências estão instaladas**
+
    ```bash
    npm install
    ```
@@ -303,13 +318,61 @@ Se aparecer erro ao executar `npx prisma generate`:
 
 1. **Pare o servidor** (Ctrl+C)
 2. **Execute o comando novamente**
+
    ```bash
    npx prisma generate
    ```
+
 3. **Inicie o servidor**
+
    ```bash
    node server.js
    ```
+
+### Erro de Porta em Uso (EADDRINUSE)
+
+Se aparecer erro `Error: listen EADDRINUSE: address already in use 0.0.0.0:3000`:
+
+1. **Parar todos os processos Node.js:**
+
+   ```bash
+   # Windows PowerShell
+   taskkill /IM node.exe /F
+
+   # Linux/Mac
+   pkill node
+   ```
+
+2. **Verificar se a porta está livre:**
+
+   ```bash
+   # Windows
+   netstat -ano | findstr :3000
+
+   # Linux/Mac
+   lsof -i :3000
+   ```
+
+3. **Reiniciar o servidor:**
+
+   ```bash
+   pnpm start
+   ```
+
+### Problema com Comandos pnpm/npm
+
+Se `pnpm` não estiver disponível, use `npm`:
+
+```bash
+# Em vez de pnpm start
+npm start
+
+# Em vez de pnpm install
+npm install
+
+# Em vez de pnpm dev
+npm run dev
+```
 
 ## 🧪 Testando os Endpoints
 

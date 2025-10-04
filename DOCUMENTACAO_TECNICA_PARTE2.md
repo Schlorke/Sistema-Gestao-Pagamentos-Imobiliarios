@@ -24,11 +24,11 @@ Este documento detalha a implementação da **Parte 2** do projeto, focando nas 
 
 ### 1. Rota: `/api/relatorios/pagamentos-por-imovel`
 
-#### Objetivo
+#### Objetivo - Pagamentos por Imóvel
 
 Retornar uma lista com o ID de cada imóvel e sua respectiva soma de todos os pagamentos.
 
-#### Formato Esperado
+#### Formato Esperado - Pagamentos por Imóvel
 
 ```json
 {
@@ -39,7 +39,7 @@ Retornar uma lista com o ID de cada imóvel e sua respectiva soma de todos os pa
 }
 ```
 
-#### Implementação Técnica
+#### Implementação Técnica - Pagamentos por Imóvel
 
 ```javascript
 app.get('/api/relatorios/pagamentos-por-imovel', async (req, res) => {
@@ -69,14 +69,14 @@ app.get('/api/relatorios/pagamentos-por-imovel', async (req, res) => {
 });
 ```
 
-#### Explicação do Reduce()
+#### Explicação do Reduce() - Pagamentos por Imóvel
 
 - **Accumulator (acc):** Objeto que acumula os totais por imóvel
 - **Current Value (pagamento):** Cada pagamento do array
 - **Valor Inicial:** `{}` - objeto vazio
 - **Lógica:** Agrupa por ID do imóvel e soma os valores
 
-#### Complexidade
+#### Complexidade - Pagamentos por Imóvel
 
 - **Tempo:** O(n) - percorre cada pagamento uma vez
 - **Espaço:** O(m) - onde m é o número de imóveis únicos
@@ -85,11 +85,11 @@ app.get('/api/relatorios/pagamentos-por-imovel', async (req, res) => {
 
 ### 2. Rota: `/api/relatorios/vendas-por-mes`
 
-#### Objetivo
+#### Objetivo - Vendas por Mês
 
 Retornar uma lista com cada mês/ano e o total de vendas ocorridas no período.
 
-#### Formato Esperado
+#### Formato Esperado - Vendas por Mês
 
 ```json
 {
@@ -100,7 +100,7 @@ Retornar uma lista com cada mês/ano e o total de vendas ocorridas no período.
 }
 ```
 
-#### Implementação Técnica
+#### Implementação Técnica - Vendas por Mês
 
 ```javascript
 app.get('/api/relatorios/vendas-por-mes', async (req, res) => {
@@ -142,7 +142,7 @@ const formatarMesAno = data => {
 };
 ```
 
-#### Explicação do Reduce()
+#### Explicação do Reduce() - Vendas por Mês
 
 - **Accumulator (acc):** Objeto que acumula totais por mês/ano
 - **Current Value (pagamento):** Cada pagamento do array
@@ -152,11 +152,11 @@ const formatarMesAno = data => {
 
 ### 3. Rota: `/api/relatorios/percentual-por-tipo`
 
-#### Objetivo
+#### Objetivo - Percentual por Tipo
 
 Retornar uma lista com cada tipo de imóvel e seu respectivo percentual no total de vendas (quantitativas).
 
-#### Formato Esperado
+#### Formato Esperado - Percentual por Tipo
 
 ```json
 {
@@ -167,7 +167,7 @@ Retornar uma lista com cada tipo de imóvel e seu respectivo percentual no total
 }
 ```
 
-#### Implementação Técnica
+#### Implementação Técnica - Percentual por Tipo
 
 ```javascript
 app.get('/api/relatorios/percentual-por-tipo', async (req, res) => {
@@ -217,7 +217,7 @@ app.get('/api/relatorios/percentual-por-tipo', async (req, res) => {
 3. **forEach():** Calcula percentual para cada tipo
 4. **Formatação:** Arredonda para 1 casa decimal e adiciona símbolo %
 
-#### Complexidade
+#### Complexidade - Percentual por Tipo
 
 - **Tempo:** O(n + m) - onde n é pagamentos e m é tipos únicos
 - **Espaço:** O(m) - onde m é o número de tipos únicos

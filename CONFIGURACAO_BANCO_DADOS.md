@@ -14,7 +14,7 @@
 **Por que recomendo:** XAMPP é mais fácil de configurar e usar.
 
 1. **Baixar XAMPP**
-   - URL: https://www.apachefriends.org/download.html
+   - URL: <https://www.apachefriends.org/download.html>
    - Baixar a versão para Windows
 
 2. **Instalar XAMPP**
@@ -37,6 +37,7 @@
    - Clicar "Go" para executar
 
 5. **Atualizar .env**
+
    ```env
    DATABASE_URL="mysql://root:@localhost:3306/sistema_pagamentos_imobiliarios"
    PORT=3000
@@ -46,7 +47,7 @@
 ### 🥈 OPÇÃO 2: MySQL Workbench
 
 1. **Baixar MySQL Workbench**
-   - URL: https://dev.mysql.com/downloads/workbench/
+   - URL: <https://dev.mysql.com/downloads/workbench/>
    - Instalar normalmente
 
 2. **Criar Conexão**
@@ -64,37 +65,42 @@
    - Copiar e colar conteúdo do `database-setup.sql`
    - Clicar botão "Execute" (raio)
 
-### 🥉 OPÇÃO 3: Resetar Senha MySQL
+### 🥉 OPÇÃO 3: Resetar Senha MySQL (Avançado)
 
-**Atenção:** Requer privilégios de administrador.
+**Atenção:** Requer privilégios de administrador e conhecimento técnico.
 
 1. **Abrir PowerShell como Administrador**
 2. **Parar MySQL:** `net stop mysql80`
-3. **Executar script de reset:** `node reset-mysql-password.js`
-4. **Seguir instruções** para resetar senha
-5. **Reiniciar MySQL:** `net start mysql80`
+3. **Seguir procedimento oficial do MySQL** para resetar senha
+4. **Reiniciar MySQL:** `net start mysql80`
+
+**Recomendação:** Use XAMPP (Opção 1) que é mais simples e não requer configuração de senha.
 
 ## ✅ Após Configurar
 
 1. **Testar conexão:**
+
    ```bash
-   node test-final-connection.js
+   # Testar se o servidor inicia corretamente
+   pnpm start
    ```
 
 2. **Gerar cliente Prisma:**
+
    ```bash
    npx prisma generate
    ```
 
 3. **Iniciar servidor:**
+
    ```bash
-   npm start
+   pnpm start
    ```
 
 4. **Testar API:**
-   - Health check: http://localhost:3000/health
-   - Dados completos: http://localhost:3000/api/pagamentos
-   - Relatórios: http://localhost:3000/api/relatorios/pagamentos-por-imovel
+   - Health check: <http://localhost:3000/health>
+   - Dados completos: <http://localhost:3000/api/pagamentos>
+   - Relatórios: <http://localhost:3000/api/relatorios/pagamentos-por-imovel>
 
 ## 🎯 Próximos Passos
 
@@ -107,6 +113,7 @@
 ## 📞 Precisa de Ajuda?
 
 Se encontrar problemas:
+
 - **XAMPP:** Verificar se o MySQL está rodando no Control Panel
 - **Workbench:** Verificar se a conexão está funcionando
 - **Reset:** Executar como administrador
