@@ -1,14 +1,24 @@
 # Sistema de Gestão de Pagamentos Imobiliários
 
-![UNIVALI Logo](assets/logo_univali.png)
+<p align="center">
+<img src="assets/logo_univali.png" alt="UNIVALI Logo" width="300">
+</p>
+
+<p align="center">
 
 ## Universidade do Vale do Itajaí - UNIVALI
 
 Instituição de Ensino Superior - Itajaí/SC
 
+</p>
+
 ---
 
+<p align="center">
+
 > **Logo da UNIVALI** - Logo oficial salva localmente em `assets/logo_univali.png`
+
+</p>
 
 ## Hands on Work VII - Parte 2
 
@@ -31,11 +41,14 @@ Rafael Queiroz Gonçalves
 
 ## 📋 Descrição do Projeto
 
-Este sistema foi desenvolvido para apoiar o projeto de extensão NAM (Núcleo de Apoio ao Migrante) da UNIVALI, facilitando a tomada de decisões sobre moradia e trabalho para migrantes através do processamento de dados imobiliários de Santa Catarina.
+Este sistema foi desenvolvido para apoiar o projeto de extensão NAM (Núcleo de Apoio ao Migrante) da UNIVALI,
+facilitando a tomada de decisões sobre moradia e trabalho para migrantes através do processamento de dados
+imobiliários de Santa Catarina.
 
 ## 🎯 Objetivos da Parte 2
 
-Implementar 3 serviços REST que processam dados imobiliários usando **programação funcional** (map/filter/reduce/forEach) em memória, sem usar WHERE ou GROUP BY no SQL.
+Implementar 3 serviços REST que processam dados imobiliários usando **programação funcional**
+(map/filter/reduce/forEach) em memória, sem usar WHERE ou GROUP BY no SQL.
 
 ### Endpoints Implementados
 
