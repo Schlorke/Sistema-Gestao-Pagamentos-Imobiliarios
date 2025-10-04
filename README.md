@@ -125,7 +125,19 @@ Implementar 3 serviços REST que processam dados imobiliários usando **programa
    npx prisma generate
    ```
 
-7. **Inicie o servidor**
+7. **Visualize as tabelas do banco (opcional)**
+
+   ```bash
+   # Introspectar e mostrar estrutura do banco
+   npx prisma db pull
+
+   # Abrir interface visual do Prisma Studio
+   npx prisma studio --port 5555
+   ```
+
+   Acesse `http://localhost:5555` para ver os dados das tabelas.
+
+8. **Inicie o servidor**
 
    ```bash
    # Opção 1: Comando direto

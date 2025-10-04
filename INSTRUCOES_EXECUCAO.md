@@ -87,7 +87,9 @@ NODE_ENV=development
 
 **⚠️ IMPORTANTE:** O XAMPP usa senha vazia por padrão. Use `mysql://root:@localhost:3306/...` (sem senha).
 
-### 4. Gerar Cliente Prisma
+### 4. Comandos do Prisma
+
+#### 4.1. Gerar Cliente Prisma
 
 ```bash
 npx prisma generate
@@ -104,6 +106,58 @@ npx prisma generate
 
 # Reiniciar servidor
 pnpm start
+```
+
+#### 4.2. Visualizar Estrutura do Banco
+
+```bash
+# Introspectar banco e atualizar schema
+npx prisma db pull
+
+# Gerar cliente após introspectar
+npx prisma generate
+```
+
+#### 4.3. Abrir Prisma Studio (Interface Visual)
+
+```bash
+# Abrir interface web para visualizar dados
+npx prisma studio --port 5555
+```
+
+Depois acesse: `http://localhost:5555`
+
+#### 4.4. Executar Migrações (se necessário)
+
+```bash
+# Aplicar migrações pendentes
+npx prisma db push
+
+# Executar script SQL específico
+npx prisma db execute --file database-setup.sql
+```
+
+#### 4.5. Verificar Status do Banco
+
+```bash
+# Verificar conexão com banco
+npx prisma db pull --preview-feature
+
+# Validar schema
+npx prisma validate
+```
+
+#### 4.6. Comandos Úteis para Desenvolvimento
+
+```bash
+# Reset completo do banco (CUIDADO!)
+npx prisma db push --force-reset
+
+# Formatar schema
+npx prisma format
+
+# Gerar diagrama ER (se disponível)
+npx prisma generate --schema=./prisma/schema.prisma
 ```
 
 ---

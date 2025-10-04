@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,46 +7,40 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Tabela de tipos de imóveis
 model TipoImovel {
   id        Int      @id @default(autoincrement())
   nome      String   @db.VarChar(100)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  
-  // Relacionamento com imóveis
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamp(0)
   imoveis   Imovel[]
-  
+
   @@map("tipos_imovel")
 }
 
-// Tabela de imóveis
 model Imovel {
-  id            Int      @id @default(autoincrement())
-  codigo        String   @unique @db.VarChar(50)
-  descricao     String   @db.VarChar(255)
-  tipoImovelId  Int
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  
-  // Relacionamentos
-  tipoImovel    TipoImovel @relation(fields: [tipoImovelId], references: [id])
-  pagamentos    Pagamento[]
-  
+  id           Int         @id @default(autoincrement())
+  codigo       String      @unique(map: "codigo") @db.VarChar(50)
+  descricao    String      @db.VarChar(255)
+  tipoImovelId Int
+  createdAt    DateTime    @default(now()) @db.Timestamp(0)
+  updatedAt    DateTime    @default(now()) @updatedAt @db.Timestamp(0)
+  tipoImovel   TipoImovel  @relation(fields: [tipoImovelId], references: [id], onUpdate: Restrict, map: "imoveis_ibfk_1")
+  pagamentos   Pagamento[]
+
+  @@index([tipoImovelId], map: "tipoImovelId")
   @@map("imoveis")
 }
 
-// Tabela de pagamentos
 model Pagamento {
   id            Int      @id @default(autoincrement())
   dataPagamento DateTime @db.Date
   valor         Decimal  @db.Decimal(10, 2)
   imovelId      Int
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  
-  // Relacionamento com imóvel
-  imovel        Imovel   @relation(fields: [imovelId], references: [id])
-  
+  createdAt     DateTime @default(now()) @db.Timestamp(0)
+  updatedAt     DateTime @default(now()) @updatedAt @db.Timestamp(0)
+  imovel        Imovel   @relation(fields: [imovelId], references: [id], onUpdate: Restrict, map: "pagamentos_ibfk_1")
+
+  @@index([dataPagamento], map: "dataPagamento")
+  @@index([imovelId], map: "imovelId")
   @@map("pagamentos")
 }

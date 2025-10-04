@@ -20,6 +20,51 @@ Este documento detalha a implementação da **Parte 2** do projeto, focando nas 
 
 ---
 
+## 🛠️ Comandos do Prisma
+
+### Visualização e Gestão do Banco
+
+```bash
+# 1. Introspectar banco e atualizar schema
+npx prisma db pull
+
+# 2. Gerar cliente após mudanças no schema
+npx prisma generate
+
+# 3. Abrir interface visual (Prisma Studio)
+npx prisma studio --port 5555
+# Acesse: http://localhost:5555
+
+# 4. Validar schema do Prisma
+npx prisma validate
+
+# 5. Formatar schema automaticamente
+npx prisma format
+```
+
+### Comandos de Desenvolvimento
+
+```bash
+# Executar script SQL
+npx prisma db execute --file database-setup.sql
+
+# Aplicar mudanças no banco
+npx prisma db push
+
+# Reset completo (CUIDADO!)
+npx prisma db push --force-reset
+```
+
+### Estrutura das Tabelas
+
+O comando `npx prisma db pull` mostra a estrutura atual do banco:
+
+- **`tipos_imovel`** - Tipos de imóveis (Apartamento, Casa, etc.)
+- **`imoveis`** - Cadastro de imóveis com códigos únicos
+- **`pagamentos`** - Registros de pagamentos por imóvel
+
+---
+
 ## 🔧 Implementações Detalhadas
 
 ### 1. Rota: `/api/relatorios/pagamentos-por-imovel`
