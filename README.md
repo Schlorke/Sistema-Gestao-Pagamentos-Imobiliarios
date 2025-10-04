@@ -1,6 +1,14 @@
 # Sistema de Gestão de Pagamentos Imobiliários
 
-![UNIVALI Logo](https://www.univali.br/SiteAssets/SitePages/Institucional/Identidade%20Visual/univali_logo.png)
+![UNIVALI Logo](assets/logo_univali.png)
+
+## Universidade do Vale do Itajaí - UNIVALI
+
+Instituição de Ensino Superior - Itajaí/SC
+
+---
+
+> **Logo da UNIVALI** - Logo oficial salva localmente em `assets/logo_univali.png`
 
 ## Hands on Work VII - Parte 2
 
