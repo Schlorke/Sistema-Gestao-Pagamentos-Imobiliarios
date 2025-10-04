@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://www.univali.br/SiteAssets/SitePages/Institucional/Identidade%20Visual/univali_logo.png" alt="UNIVALI Logo" width="300">
+</p>
+
 # Sistema de Gestão de Pagamentos Imobiliários
 
 ## Hands on Work VII - Parte 2
@@ -52,17 +56,17 @@ Implementar 3 serviços REST que processam dados imobiliários usando **programa
 
 ### Pré-requisitos
 
-- Node.js (versão 18+)
-- MySQL Server
-- npm ou yarn
+- **Node.js** (versão 18+)
+- **XAMPP** (recomendado) ou MySQL Server
+- **npm** ou yarn
 
 ### Passos para Instalação
 
 1. **Clone o repositório**
 
    ```bash
-   git clone <url-do-repositorio>
-   cd sistema-gestao-pagamentos
+   git clone https://github.com/Schlorke/Sistema-Gestao-Pagamentos-Imobiliarios.git
+   cd Sistema-Gestao-Pagamentos-Imobiliarios
    ```
 
 2. **Instale as dependências**
@@ -71,34 +75,51 @@ Implementar 3 serviços REST que processam dados imobiliários usando **programa
    npm install
    ```
 
-3. **Configure o banco de dados**
-   - Execute o script `database-setup.sql` no MySQL
-   - Configure a string de conexão no arquivo `.env`
+3. **Configure o XAMPP/MySQL**
+   - Instale o [XAMPP](https://www.apachefriends.org/download.html)
+   - Abra o XAMPP Control Panel
+   - Clique "Start" no MySQL
+   - Clique "Admin" para abrir phpMyAdmin
 
-4. **Configure as variáveis de ambiente**
+4. **Configure o banco de dados**
+   - No phpMyAdmin, crie um banco chamado `sistema_pagamentos_imobiliarios`
+   - Execute o script `database-setup.sql` no banco criado
+
+5. **Configure as variáveis de ambiente**
 
    ```bash
-   # Copie o arquivo de exemplo
-   cp .env.example .env
-
-   # Edite o arquivo .env com suas configurações
-   DATABASE_URL="mysql://usuario:senha@localhost:3306/sistema_pagamentos_imobiliarios"
+   # Crie o arquivo .env na raiz do projeto
+   DATABASE_URL="mysql://root:@localhost:3306/sistema_pagamentos_imobiliarios"
    PORT=3000
+   NODE_ENV=development
    ```
 
-5. **Gere o cliente Prisma**
+   **⚠️ IMPORTANTE:** O XAMPP usa senha vazia por padrão. Use `root:@localhost` (sem senha).
+
+6. **Gere o cliente Prisma**
 
    ```bash
    npx prisma generate
    ```
 
-6. **Inicie o servidor**
+7. **Inicie o servidor**
 
    ```bash
-   npm start
-   # ou para desenvolvimento
-   npm run dev
+   node server.js
    ```
+
+   **⚠️ NOTA:** Este projeto não usa `npm start` - execute diretamente `node server.js`
+
+### Teste Automatizado
+
+Após configurar tudo, execute o script de teste:
+
+```bash
+# Com o servidor rodando em outro terminal
+node test-endpoints.js
+```
+
+Este script testa automaticamente todos os 3 endpoints da Parte 2.
 
 ## 🚀 Como Usar
 
@@ -241,7 +262,62 @@ Object.entries(contagemPorTipo).forEach(([tipo, quantidade]) => {
 - **Tratamento de erros:** Logs detalhados e respostas padronizadas
 - **Validação de dados:** Verificação de integridade dos dados
 
+## 🔧 Solução de Problemas
+
+### Erro de Conexão com Banco
+
+Se aparecer erro de conexão:
+
+1. **Verifique se o XAMPP MySQL está rodando**
+   ```bash
+   # No XAMPP Control Panel, clique "Start" no MySQL
+   ```
+
+2. **Verifique se o banco existe**
+   - Abra phpMyAdmin (http://localhost/phpmyadmin)
+   - Confirme que existe o banco `sistema_pagamentos_imobiliarios`
+
+3. **Verifique o arquivo .env**
+   ```bash
+   # Deve estar assim para XAMPP:
+   DATABASE_URL="mysql://root:@localhost:3306/sistema_pagamentos_imobiliarios"
+   ```
+
+### Erro "Cannot find module"
+
+Se aparecer erro ao executar `node server.js`:
+
+1. **Navegue para o diretório correto**
+   ```bash
+   cd Sistema-Gestao-Pagamentos-Imobiliarios
+   ```
+
+2. **Verifique se as dependências estão instaladas**
+   ```bash
+   npm install
+   ```
+
+### Erro de Permissão Prisma
+
+Se aparecer erro ao executar `npx prisma generate`:
+
+1. **Pare o servidor** (Ctrl+C)
+2. **Execute o comando novamente**
+   ```bash
+   npx prisma generate
+   ```
+3. **Inicie o servidor**
+   ```bash
+   node server.js
+   ```
+
 ## 🧪 Testando os Endpoints
+
+### Teste Automatizado (Recomendado)
+
+```bash
+node test-endpoints.js
+```
 
 ### Usando cURL
 
