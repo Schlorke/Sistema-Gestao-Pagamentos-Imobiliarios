@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Tabela de tipos de imóveis
+model TipoImovel {
+  id        Int      @id @default(autoincrement())
+  nome      String   @db.VarChar(100)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relacionamento com imóveis
+  imoveis   Imovel[]
+  
+  @@map("tipos_imovel")
+}
+
+// Tabela de imóveis
+model Imovel {
+  id            Int      @id @default(autoincrement())
+  codigo        String   @unique @db.VarChar(50)
+  descricao     String   @db.VarChar(255)
+  tipoImovelId  Int
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  // Relacionamentos
+  tipoImovel    TipoImovel @relation(fields: [tipoImovelId], references: [id])
+  pagamentos    Pagamento[]
+  
+  @@map("imoveis")
+}
+
+// Tabela de pagamentos
+model Pagamento {
+  id            Int      @id @default(autoincrement())
+  dataPagamento DateTime @db.Date
+  valor         Decimal  @db.Decimal(10, 2)
+  imovelId      Int
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  // Relacionamento com imóvel
+  imovel        Imovel   @relation(fields: [imovelId], references: [id])
+  
+  @@map("pagamentos")
+}
